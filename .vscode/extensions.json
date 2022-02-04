@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"streetsidesoftware.code-spell-checker",
+		"msjsdiag.vscode-react-native",
+		"dsznajder.es7-react-js-snippets"
+	]
+}
