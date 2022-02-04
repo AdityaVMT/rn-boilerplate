@@ -14,6 +14,7 @@
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
     "format": "prettier --check './src/**/*.{ts,tsx,js,jsx}'",
     "format:fix": "prettier --write './src/**/*.{ts,tsx,js,jsx}'"
+    "rename": "react-native-rename"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
