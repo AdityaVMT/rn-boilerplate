@@ -1,11 +1,28 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import IntroScreen from '@screens/Intro';
+import LoginScreen from '@screens/Login';
+
+const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {
   return (
-    <View>
-      <Text>Auth Stack</Text>
-    </View>
+    <Stack.Navigator initialRouteName="Intro">
+      <Stack.Screen
+        name="Intro"
+        component={IntroScreen}
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        options={{
+          headerShown: true,
+        }}
+        component={LoginScreen}
+      />
+    </Stack.Navigator>
   );
 };
 
