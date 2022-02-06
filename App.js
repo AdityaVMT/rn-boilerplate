@@ -1,3 +1,7 @@
+/* eslint-disable react-native/sort-styles */
+/* eslint-disable react-native/no-raw-text */
+/* eslint-disable no-use-before-define */
+/* eslint-disable react/prop-types */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -7,8 +11,10 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import './src/i18next';
+import {useTranslation} from 'react-i18next';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -26,7 +32,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -52,11 +58,17 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  const {t, i18n} = useTranslation();
+
+  const handleChangeLang = (language) => {
+    i18n.changeLanguage(language);
   };
 
   return (
@@ -70,6 +82,13 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Section title="Internalization">
+            <Text style={styles.highlight}>{t('Home.title')}</Text>
+          </Section>
+          <View style={styles.buttonContainer}>
+            <Button title="Hindi" onPress={() => handleChangeLang('hi')} />
+            <Button title="English" onPress={() => handleChangeLang('en')} />
+          </View>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
@@ -91,6 +110,12 @@ const App: () => Node = () => {
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    width: '100%',
+    marginVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
