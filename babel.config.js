@@ -4,7 +4,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         extensions: [
           '.js',
           '.jsx',
@@ -15,19 +15,8 @@ module.exports = {
           '.android.js',
         ],
         alias: {
-          '@assets': './assets',
-          '@constants': './assets/constants',
-          '@icons': './assets/constants/icons',
-          '@images': './assets/constants/images',
           '@navigation': './src/navigation',
-          '@components': './src/components',
           '@screens': './src/screens',
-          '@action': './src/redux/action/index.js',
-          '@config': './src/config',
-          '@context': './src/context',
-          '@layout': './src/layout',
-          '@utils': './src/utils',
-          '@theme': './src/theme',
         },
       },
     ],

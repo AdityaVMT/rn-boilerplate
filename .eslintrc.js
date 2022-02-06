@@ -78,12 +78,8 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@constants', './assets/constants'],
-          ['@icons', './assets/constants/icons'],
-          ['@images', './assets/constants/images'],
-          ['@components', './src/components'],
+          ['@navigation', './src/navigation'],
           ['@screens', './src/screens'],
-          ['@action', './src/redux/action/index.js'],
         ],
       },
     },
