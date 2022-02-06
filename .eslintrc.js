@@ -37,7 +37,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
-      'warn',
+      'error',
       {
         vars: 'all',
         varsIgnorePattern: '^_',
@@ -71,6 +71,7 @@ module.exports = {
         caseSensitive: false,
       },
     ],
+    'no-unsafe-optional-chaining': 'off',
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
