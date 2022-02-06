@@ -1,16 +1,16 @@
 import React from 'react';
-import HomeScreen from '@screens/Home';
+import ProfileScreen from '@screens/Profile';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const HomeStack = () => {
+const ProfileStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Profile">
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={{
           headerShown: false,
         }}
@@ -19,4 +19,4 @@ const HomeStack = () => {
   );
 };
 
-export default HomeStack;
+export default ProfileStack;

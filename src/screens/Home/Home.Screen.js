@@ -57,7 +57,7 @@ const Section = ({children, title}) => {
   );
 };
 
-const Home = () => {
+const HomeScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -133,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;

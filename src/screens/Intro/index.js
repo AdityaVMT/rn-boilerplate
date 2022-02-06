@@ -1,3 +1,3 @@
-import Intro from './Intro.Screen';
+import IntroScreen from './Intro.Screen';
 
-export default Intro;
+export default IntroScreen;

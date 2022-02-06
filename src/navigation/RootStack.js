@@ -3,7 +3,7 @@ import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 
 const RootStack = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   if (isAuthenticated) {
     return <AppStack />;

@@ -1,3 +1,3 @@
-import Intro from './Login.Screen';
+import LoginScreen from './Login.Screen';
 
-export default Intro;
+export default LoginScreen;
