@@ -80,6 +80,8 @@ module.exports = {
         map: [
           ['@navigation', './src/navigation'],
           ['@screens', './src/screens'],
+          ['@redux', './src/redux'],
+          ['@action', './src/redux/action'],
         ],
       },
     },

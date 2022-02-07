@@ -22,6 +22,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {
   Colors,
@@ -30,6 +31,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import {userWatcher} from '@action';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -58,6 +61,13 @@ const Section = ({children, title}) => {
 };
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.userReducer);
+
+  const getUser = () => {
+    dispatch(userWatcher());
+  };
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -88,6 +98,14 @@ const HomeScreen = () => {
             <Button title="Hindi" onPress={() => handleChangeLang('hi')} />
             <Button title="English" onPress={() => handleChangeLang('en')} />
           </View>
+          <Section title="Redux Saga">
+            <View>
+              <Text>
+                {userData?.user?.firstName} {userData?.user?.lastName}
+              </Text>
+              <Button title="Get User" onPress={getUser} />
+            </View>
+          </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>Home.js</Text> to change this
             screen and then come back to see your edits.
