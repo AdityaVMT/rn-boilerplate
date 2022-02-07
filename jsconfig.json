@@ -5,20 +5,11 @@
       "*": [
         "./src/*"
       ],
-      "@assets": [
-        "./assets"
+      "@navigation": [
+        "./src/navigation/*"
       ],
-      "@constants": [
-        "./assets/constants"
-      ],
-      "@icons": [
-        "./assets/constants/icons"
-      ],
-      "@images": [
-        "./assets/constants/images"
-      ],
-      "@components": [
-        "./src/components/*"
+      "@screens": [
+        "./src/screens/*"
       ],
     }
   },
