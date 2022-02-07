@@ -17,6 +17,9 @@
       "@action": [
         "./src/redux/action/*"
       ],
+      "@utils": [
+        "./src/utils/*"
+      ]
     }
   },
   "exclude": [

@@ -10,7 +10,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Button,
@@ -33,6 +33,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {userWatcher} from '@action';
+import {formatDate} from '@utils';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -61,6 +62,8 @@ const Section = ({children, title}) => {
 };
 
 const HomeScreen = () => {
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
 
@@ -105,6 +108,9 @@ const HomeScreen = () => {
               </Text>
               <Button title="Get User" onPress={getUser} />
             </View>
+          </Section>
+          <Section title="Date FNS">
+            <Text>{formatDate(date)}</Text>
           </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>Home.js</Text> to change this
