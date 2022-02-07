@@ -1,15 +1,15 @@
 import React from 'react';
-import HomeScreen from '@screens/Home';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from '@screens/Home';
+import ROUTES from '@navigation/ROUTES';
 
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName={ROUTES.HOME}>
       <Stack.Screen
-        name="Home"
+        name={ROUTES.HOME}
         component={HomeScreen}
         options={{
           headerShown: false,
