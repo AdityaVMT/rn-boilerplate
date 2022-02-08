@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import './i18next';
+import store from '@redux';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStack from '@navigation/RootStack';
-import store from '@redux';
+import './translations';
 
 const App = () => {
   return (
