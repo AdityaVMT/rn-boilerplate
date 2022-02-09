@@ -83,6 +83,7 @@ module.exports = {
           ['@redux', './src/redux'],
           ['@action', './src/redux/action'],
           ['@utils', './src/utils'],
+          ['@icons', './assets/constants/icons'],
         ],
       },
     },

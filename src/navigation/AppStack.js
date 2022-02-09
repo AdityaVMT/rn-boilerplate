@@ -1,5 +1,7 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {HomeIcon, UserIcon} from '@icons';
 import HomeStack from './stack/HomeStack';
 import ProfileStack from './stack/ProfileStack';
 import ROUTES from './ROUTES';
@@ -11,24 +13,24 @@ const AppStack = () => {
     <Tab.Navigator
       initialRouteName={ROUTES.HOME_STACK}
       screenOptions={{
-        tabBarShowLabel: true,
+        tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: 'white',
         },
-        tabBarActiveTintColor: 'cyan',
-        headerShown: true,
+        tabBarActiveTintColor: 'pink',
+        headerShown: false,
       }}>
       <Tab.Screen
         name={ROUTES.HOME_STACK}
         options={{
-          tabBarIcon: () => {},
+          tabBarIcon: ({color, size}) => <HomeIcon color={color} size={size} />,
         }}>
         {() => <HomeStack />}
       </Tab.Screen>
       <Tab.Screen
         name={ROUTES.PROFILE_STACK}
         options={{
-          tabBarIcon: () => {},
+          tabBarIcon: ({color, size}) => <UserIcon color={color} size={size} />,
         }}>
         {() => <ProfileStack />}
       </Tab.Screen>
