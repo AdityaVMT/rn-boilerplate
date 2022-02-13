@@ -101,7 +101,7 @@ const HomeScreen = () => {
             <Button title="Hindi" onPress={() => handleChangeLang('hi')} />
             <Button title="English" onPress={() => handleChangeLang('en')} />
           </View>
-          <Section title="Redux Saga">
+          <Section title="Redux Saga with Redux Persist">
             <View>
               <Text>
                 {userData?.user?.firstName} {userData?.user?.lastName}
@@ -109,12 +109,12 @@ const HomeScreen = () => {
               <Button title="Get User" onPress={getUser} />
             </View>
           </Section>
-          <Section title="Date FNS">
-            <Text>{formatDate(date)}</Text>
-          </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>Home.js</Text> to change this
             screen and then come back to see your edits.
+          </Section>
+          <Section title="Date FNS">
+            <Text>{formatDate(date)}</Text>
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
@@ -125,7 +125,6 @@ const HomeScreen = () => {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <LearnMoreLinks />
         </View>
       </ScrollView>
     </SafeAreaView>
