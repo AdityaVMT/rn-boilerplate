@@ -1,13 +1,15 @@
 import React from 'react';
 import AppStack from './AppStack';
+import {useAuth} from './auth/AuthProvider';
 import AuthStack from './AuthStack';
 
 const RootStack = () => {
-  const isAuthenticated = true;
+  const {authToken, timeStamp, deviceId} = useAuth();
 
-  if (isAuthenticated) {
+  if (authToken && timeStamp && deviceId) {
     return <AppStack />;
   }
+
   return <AuthStack />;
 };
 
