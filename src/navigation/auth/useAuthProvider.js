@@ -3,12 +3,13 @@ import axios from 'axios';
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 import {
+  API_URL,
+  STORAGE_KEYS,
   getItemFromAsyncStorage,
   setMultipleItemsInAsyncStorage,
   removeMultipleItemsFromAsyncStorage,
   getMultipleItemsFromAsyncStorage,
-} from '../../utils/async-storage-service';
-import {API_URL, STORAGE_KEYS} from '../../utils';
+} from '../../utils';
 
 // https://www.npmjs.com/package/react-native-get-random-values
 
@@ -20,7 +21,7 @@ const useAuthProvider = () => {
   const [timeStamp, setTimeStamp] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
 
-  const getAuthToken = useCallback(async () => {
+  const getAuthTokens = useCallback(async () => {
     const authInfo = await getMultipleItemsFromAsyncStorage([
       STORAGE_KEYS.AUTH_TOKEN_KEY,
       STORAGE_KEYS.TIME_STAMP_KEY,
@@ -35,8 +36,6 @@ const useAuthProvider = () => {
   }, []);
 
   useEffect(() => {
-    getAuthToken();
-
     return () => {};
   }, []);
 

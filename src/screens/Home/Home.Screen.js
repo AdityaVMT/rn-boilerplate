@@ -10,7 +10,7 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Button,
@@ -19,30 +19,27 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
+  Switch,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import {EventRegister} from 'react-native-event-listeners';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Header} from 'react-native/Libraries/NewAppScreen';
 
 import {userWatcher} from '@action';
-import {formatDate} from '@utils';
+import {formatDate, STORAGE_KEYS, getItemFromAsyncStorage} from '@utils';
+import {useTheme} from '@utils/theme-provider';
 
 const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const theme = useTheme();
   return (
     <View style={styles.sectionContainer}>
       <Text
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            color: theme.color,
           },
         ]}>
         {title}
@@ -51,7 +48,7 @@ const Section = ({children, title}) => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? Colors.light : Colors.dark,
+            color: theme.color,
           },
         ]}>
         {children}
@@ -61,19 +58,38 @@ const Section = ({children, title}) => {
 };
 
 const HomeScreen = () => {
+  const theme = useTheme();
+
   // eslint-disable-next-line unused-imports/no-unused-vars
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer);
+  const [themeMode, setThemeMode] = useState('light');
+
+  const findThemeMode = useCallback(async () => {
+    const themeModeIsDark = await getItemFromAsyncStorage(
+      STORAGE_KEYS.CHANGE_THEME_KEY
+    );
+    if (themeModeIsDark) {
+      setThemeMode(themeModeIsDark ? 'dark' : 'light');
+    }
+  }, []);
+
+  useEffect(() => {
+    findThemeMode();
+  }, []);
 
   const getUser = () => {
     dispatch(userWatcher());
   };
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const handleThemeMode = (value) => {
+    setThemeMode(value ? 'dark' : 'light');
+    EventRegister.emit('changeTheme', value);
+  };
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: theme.background,
   };
 
   const {t, i18n} = useTranslation();
@@ -84,14 +100,14 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={theme.background} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: theme.background,
           }}>
           <Section title="Internalization">
             <Text style={styles.highlight}>{t('Home.title')}</Text>
@@ -101,28 +117,22 @@ const HomeScreen = () => {
             <Button title="English" onPress={() => handleChangeLang('en')} />
           </View>
           <Section title="Redux Saga with Redux Persist">
-            <View>
-              <Text>
-                {userData?.user?.firstName} {userData?.user?.lastName}
-              </Text>
-              <Button title="Get User" onPress={getUser} />
-            </View>
+            <Text>
+              {userData?.user?.firstName} {userData?.user?.lastName}
+              <View>
+                <Button title="Get User" onPress={getUser} />
+              </View>
+            </Text>
           </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>Home.js</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Dark & light Theme">
+            <Switch
+              value={themeMode === 'dark'}
+              onValueChange={(value) => handleThemeMode(value)}
+            />
+            <Text>Theme Mode: {themeMode}</Text>
           </Section>
           <Section title="Date FNS">
             <Text>{formatDate(date)}</Text>
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
           </Section>
         </View>
       </ScrollView>
