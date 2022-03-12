@@ -20,9 +20,6 @@
       "@utils": [
         "./src/utils/*"
       ],
-      "@theme": [
-        "./assets/constants/theme"
-      ],
       "@icons": [
         "./assets/constants/icons"
       ]

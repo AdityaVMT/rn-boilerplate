@@ -6,7 +6,8 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, Suspense} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {store, persistor} from '@redux';
 import {Provider as ReduxProvider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -25,7 +26,13 @@ import {
   setItemInAsyncStorage,
   getItemFromAsyncStorage,
 } from '@utils';
-import {THEME} from './assets/constants/theme';
+import {THEME} from './src/theme';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -53,17 +60,23 @@ const App = () => {
   }, []);
 
   return (
-    <ReduxProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <AuthProvider>
-          <ThemeContext.Provider value={darkMode ? THEME.dark : THEME.light}>
-            <NavigationContainer theme={darkMode ? DarkTheme : DefaultTheme}>
-              <RootStack />
-            </NavigationContainer>
-          </ThemeContext.Provider>
-        </AuthProvider>
-      </PersistGate>
-    </ReduxProvider>
+    <Suspense fallback={null}>
+      <SafeAreaView style={styles.container}>
+        <ReduxProvider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <AuthProvider>
+              <ThemeContext.Provider
+                value={darkMode ? THEME.dark : THEME.light}>
+                <NavigationContainer
+                  theme={darkMode ? DarkTheme : DefaultTheme}>
+                  <RootStack />
+                </NavigationContainer>
+              </ThemeContext.Provider>
+            </AuthProvider>
+          </PersistGate>
+        </ReduxProvider>
+      </SafeAreaView>
+    </Suspense>
   );
 };
 
