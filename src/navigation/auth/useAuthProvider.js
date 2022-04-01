@@ -36,6 +36,7 @@ const useAuthProvider = () => {
   }, []);
 
   useEffect(() => {
+    getAuthTokens();
     return () => {};
   }, []);
 

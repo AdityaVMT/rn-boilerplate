@@ -13,10 +13,12 @@ const propTypes = {
 const authContext = createContext();
 
 const AuthProvider = ({children}) => {
-  const {authToken, login, logout, signup} = useAuthProvider();
+  const {authToken, timeStamp, deviceId, login, logout, signup} =
+    useAuthProvider();
 
   return (
-    <authContext.Provider value={(authToken, login, logout, signup)}>
+    <authContext.Provider
+      value={(authToken, timeStamp, deviceId, login, logout, signup)}>
       {children}
     </authContext.Provider>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, KeyboardAvoidingView} from 'react-native';
 
 const LoginScreen = () => {
   return (
-    <View>
-      <Text>Login Screen</Text>
-    </View>
+    <KeyboardAvoidingView>
+      <View>
+        <Text>Login Form Will be Here</Text>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -4,6 +4,7 @@ const ROUTES = {
   /* auth stack */
   INTRO: 'Intro',
   LOGIN: 'Login',
+  SIGNUP: 'Signup',
 
   /* main stack */
   HOME_STACK: 'HomeStack',
